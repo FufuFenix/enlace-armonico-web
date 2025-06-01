@@ -342,8 +342,8 @@
         /* FRANJA 1: H1 + Párrafo + Logo */
         .hero-franja-1 {
             display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 60px;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
             align-items: center;
             margin-bottom: 50px;
             position: relative;
@@ -367,12 +367,13 @@
 
         .hero-logo {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
+            padding-left: 20px;
         }
         
         .hero-logo img {
-            width: 300px;
+            width: 400px;
             height: auto;
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
             animation: float 4s ease-in-out infinite;
@@ -415,9 +416,9 @@
             flex-wrap: wrap;
         }
 
-        /* Urgency badge mejorado - mismo tamaño que botón principal */
+        /* Urgency badge mejorado - color sólido más vibrante */
         .urgency-badge {
-            background: var(--gradient-hero);
+            background: var(--blue-primary);
             color: white;
             padding: 16px 32px;
             border-radius: 30px;
@@ -429,26 +430,35 @@
             gap: 10px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-medium);
-            animation: pulse-subtle 3s infinite;
+            animation: pulse-urgency-strong 2s infinite;
         }
 
         .urgency-badge:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-strong);
-            background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
+            background: var(--blue-dark);
         }
         
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
+        @keyframes pulse-urgency-strong {
+            0%, 100% { 
+                opacity: 1; 
+                box-shadow: var(--shadow-medium);
+                transform: scale(1);
+                background: var(--blue-primary);
+            }
+            50% { 
+                opacity: 0.95; 
+                box-shadow: 0 8px 40px rgba(122, 155, 176, 0.4);
+                transform: scale(1.02);
+                background: var(--blue-light);
+            }
         }
 
-        /* Features organizadas lado a lado */
+        /* Features solo los 4 selling points */
         .hero-features-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            max-width: 600px;
             margin: 0 auto;
         }
 
@@ -456,6 +466,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+            width: 100%;
         }
         
         .feature-item {
@@ -466,41 +477,19 @@
             padding: 15px;
             border-radius: 12px;
             color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(212, 121, 107, 0.15);
+            transform: translateY(-2px);
         }
         
         .feature-icon {
             font-size: 1.5rem;
         }
 
-        .value-points {
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 20px; 
-            background: rgba(74, 123, 149, 0.05); 
-            padding: 20px; 
-            border-radius: 12px;
-        }
-
-        .value-point {
-            text-align: left;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .value-point strong {
-            color: var(--blue-dark); 
-            display: block; 
-            margin-bottom: 8px;
-        }
-
-        .value-point span {
-            font-size: 0.9rem; 
-            color: var(--charcoal);
-        }
-
-        /* FRANJA 3: Diferenciador mejorado */
+        /* FRANJA 3: Diferenciador limpio */
         .hero-franja-3 {
             position: relative;
             z-index: 2;
@@ -508,35 +497,25 @@
         }
 
         .honest-differentiators {
-            background: linear-gradient(135deg, var(--warm-beige) 0%, var(--blue-soft) 100%);
-            padding: 30px;
-            border-radius: 20px;
-            border-left: 5px solid var(--coral-primary);
-            box-shadow: var(--shadow-soft);
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
             position: relative;
-        }
-
-        .honest-differentiators::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-size: 3rem;
-            color: var(--coral-primary);
-            font-family: var(--font-heading);
-            opacity: 0.3;
+            background: transparent;
+            padding: 40px 20px;
         }
 
         .honest-differentiators p {
             font-size: 1.2rem;
+            font-weight: 600;
             font-style: italic;
             color: var(--blue-dark);
             text-align: center;
             margin: 0;
             position: relative;
             z-index: 1;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
         }
         
         /* Section Styling */
@@ -553,8 +532,54 @@
             color: var(--blue-dark);
         }
         
-        .section:nth-child(even) {
+        /* Especialidades con fondo diferenciado */
+        #especialidades {
             background: var(--warm-beige);
+        }
+
+        /* Mi Enfoque mantiene su fondo especial */
+        .approach-section {
+            background: linear-gradient(135deg, var(--warm-beige) 0%, var(--blue-soft) 50%, var(--warm-beige) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Casos de éxito - fondo blanco (transición crítica) */
+        .section:nth-child(4) {
+            background: var(--soft-white);
+        }
+
+        /* Proceso - fondo sage green */
+        .section:nth-child(5) {
+            background: rgba(143, 175, 158, 0.15);
+        }
+
+        /* Experiencia - fondo blanco (transición crítica) */
+        #experiencia {
+            background: var(--soft-white);
+        }
+
+        /* Horarios - fondo beige */
+        .section:nth-child(7) {
+            background: var(--warm-beige);
+        }
+
+        /* Testimonios - fondo blanco (transición crítica) */
+        .section:nth-child(8) {
+            background: var(--soft-white);
+        }
+
+        /* Contacto - fondo sage green */
+        #contacto {
+            background: rgba(143, 175, 158, 0.15);
+        }
+
+        /* Cards con bordes sutiles en fondos blancos */
+        .section:nth-child(4) .case-card,
+        #experiencia .education-card,
+        #experiencia .experience-card,
+        .section:nth-child(8) .testimonial-card {
+            border: 1px solid rgba(143, 175, 158, 0.15);
         }
         
         /* Especialidades */
@@ -663,6 +688,68 @@
             margin-bottom: 3rem;
             line-height: 1.6;
         }
+
+        /* Value points elegantes y sutiles - estilo circular */
+        .approach-value-points {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            margin: 3rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .approach-value-point {
+            position: relative;
+            text-align: center;
+            flex: 1;
+        }
+
+        .approach-value-point::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .approach-value-point:nth-child(1)::before {
+            background: linear-gradient(135deg, rgba(212, 121, 107, 0.15), rgba(212, 121, 107, 0.05));
+        }
+
+        .approach-value-point:nth-child(2)::before {
+            background: linear-gradient(135deg, rgba(74, 123, 149, 0.15), rgba(74, 123, 149, 0.05));
+        }
+
+        .approach-value-point:nth-child(3)::before {
+            background: linear-gradient(135deg, rgba(143, 175, 158, 0.15), rgba(143, 175, 158, 0.05));
+        }
+
+        .approach-value-point strong {
+            position: relative;
+            z-index: 1;
+            color: var(--blue-dark);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 35px;
+        }
+
+        .approach-value-point span {
+            position: relative;
+            z-index: 1;
+            color: var(--charcoal);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            display: block;
+        }
         
         .approach-visual {
             display: flex;
@@ -748,7 +835,32 @@
             font-size: 1.1rem;
         }
 
-        .feature-row:nth-child(even) .feature-card h4 {
+        /* Alternar colores intercalados */
+        .feature-row:nth-child(1) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(3) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(5) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(7) .feature-card:nth-child(1) h4 {
+            color: var(--coral-dark);
+        }
+
+        .feature-row:nth-child(2) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(4) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(6) .feature-card:nth-child(1) h4,
+        .feature-row:nth-child(8) .feature-card:nth-child(1) h4 {
+            color: var(--blue-dark);
+        }
+
+        .feature-row:nth-child(1) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(3) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(5) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(7) .feature-card:nth-child(2) h4 {
+            color: var(--blue-dark);
+        }
+
+        .feature-row:nth-child(2) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(4) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(6) .feature-card:nth-child(2) h4,
+        .feature-row:nth-child(8) .feature-card:nth-child(2) h4 {
             color: var(--coral-dark);
         }
         
@@ -773,6 +885,10 @@
             border-radius: 20px;
             box-shadow: var(--shadow-soft);
             border-left: 5px solid var(--blue-primary);
+        }
+
+        .case-card:nth-child(2) {
+            border-left: 5px solid var(--coral-primary);
         }
 
         .case-before-after {
@@ -804,9 +920,9 @@
         /* Proceso */
         .process-steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -1003,6 +1119,23 @@
             width: 100%;
             max-width: 600px;
         }
+
+        /* Alternar colores de bordes en testimonios */
+        .testimonial-slide:nth-child(1) .testimonial-card {
+            border-left: 5px solid var(--coral-primary);
+        }
+
+        .testimonial-slide:nth-child(2) .testimonial-card {
+            border-left: 5px solid var(--blue-primary);
+        }
+
+        .testimonial-slide:nth-child(3) .testimonial-card {
+            border-left: 5px solid var(--coral-primary);
+        }
+
+        .testimonial-slide:nth-child(4) .testimonial-card {
+            border-left: 5px solid var(--blue-primary);
+        }
         
         .testimonial-text {
             font-style: italic;
@@ -1109,10 +1242,13 @@
             background: var(--warm-beige);
             border-radius: 15px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
         }
         
         .contact-method:hover {
             background: var(--blue-soft);
+            text-decoration: none;
         }
         
         .contact-method .icon {
@@ -1175,9 +1311,28 @@
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-map-section {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+
+        .footer-map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            height: 300px;
+            width: 100%;
+        }
+
+        .footer-map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         
         .footer-section h4 {
@@ -1186,9 +1341,8 @@
             color: var(--coral-light);
         }
         
-        .footer-section p, .footer-section a {
+        .footer-section p {
             color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
             line-height: 1.6;
         }
         
@@ -1352,6 +1506,21 @@
             .hero-features {
                 grid-template-columns: 1fr;
             }
+
+            .approach-value-points {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .approach-value-point::before {
+                width: 60px;
+                height: 60px;
+                top: -10px;
+            }
+
+            .approach-value-point strong {
+                margin-top: 25px;
+            }
             
             .hero-buttons {
                 flex-direction: column;
@@ -1401,6 +1570,10 @@
             .testimonial-card {
                 height: auto;
                 min-height: 250px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -1461,16 +1634,16 @@
             <!-- FRANJA 1: H1 + Párrafo + Logo -->
             <div class="hero-franja-1">
                 <div class="hero-text-main">
-                    <h1>A veces, lo único que necesitas es un espacio seguro para entenderte y encontrar claridad</h1>
+                    <h1>Un espacio seguro para entenderte y encontrar claridad</h1>
                     
                     <div class="hero-logo-mobile">
                         <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica" loading="eager" width="200" height="150">
                     </div>
                     
-                    <p>Como psicólogo te acompaño a encontrar el camino para lidiar con tu situación. Transformamos la confusión en claridad, el sufrimiento en crecimiento. No tienes que vivir en ansiedad. No estás sola(o)</p>
+                    <p>Como psicólogo te acompaño a transformar la confusión en claridad, el sufrimiento en crecimiento. No tienes que vivir en ansiedad. No estás sola(o)</p>
                 </div>
                 <div class="hero-logo">
-                    <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica especializada en ansiedad y depresión" loading="eager" width="300" height="225">
+                    <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica especializada en ansiedad y depresión" loading="eager" width="400" height="300">
                 </div>
             </div>
 
@@ -1507,28 +1680,13 @@
                             <span>500+ vidas transformadas</span>
                         </div>
                     </div>
-
-                    <div class="value-points">
-                        <div class="value-point">
-                            <strong>✓ Diagnóstico claro</strong>
-                            <span>Sabrás qué está pasando y por qué</span>
-                        </div>
-                        <div class="value-point">
-                            <strong>✓ Contención real</strong>
-                            <span>Un espacio seguro donde puedes ser vulnerable</span>
-                        </div>
-                        <div class="value-point">
-                            <strong>✓ Cambios reales</strong>
-                            <span>Mejoras evidentes en 5-8 sesiones</span>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <!-- FRANJA 3: Diferenciador mejorado -->
             <div class="hero-franja-3">
                 <div class="honest-differentiators">
-                    <p>"No soy el psicólogo que te regaña, te da consejos genéricos o solo te dice lo que quieres escuchar. Trabajamos las causas, no solo los síntomas."</p>
+                    <p>"No soy el psicólogo que te regaña, te minimiza o te da respuestas fáciles. Entiendo que llegaste aquí porque necesitas que alguien realmente te escuche y te ayude a encontrar tu camino."</p>
                 </div>
             </div>
         </div>
@@ -1608,6 +1766,21 @@
                 <p class="approach-intro" data-aos="fade-up" data-aos-delay="100">
                     Te ayudo a entender lo que realmente te está pasando, para que puedas desarrollar las herramientas que necesitas en tu día a día.
                 </p>
+
+                <div class="approach-value-points" data-aos="fade-up" data-aos-delay="150">
+                    <div class="approach-value-point">
+                        <strong>✓ Contención genuina</strong>
+                        <span>Un espacio seguro donde puedes ser vulnerable</span>
+                    </div>
+                    <div class="approach-value-point">
+                        <strong>✓ Cambios reales</strong>
+                        <span>Mejoras evidentes en 4-8 sesiones</span>
+                    </div>
+                    <div class="approach-value-point">
+                        <strong>✓ Diagnóstico claro</strong>
+                        <span>Sabrás qué está pasando y por qué</span>
+                    </div>
+                </div>
                 
                 <div class="approach-visual" data-aos="fade-up" data-aos-delay="200">
                     <div class="approach-character heart">
@@ -1627,45 +1800,34 @@
                 <div class="distinguishing-features">
                     <div class="feature-row">
                         <div class="feature-card" data-aos="fade-right" data-aos-delay="300">
-                            <h4>Entiendo qué está pasando realmente</h4>
-                            <p>Para poder trabajar en lo que va a hacer la diferencia</p>
+                            <h4>Especialista en cómo tratar la ansiedad</h4>
+                            <p>Te ayudo a regular y afrontar esos pensamientos y emociones que te abruman. Aprende a estar tranquila(o) ¡se puede!</p>
                         </div>
                         <div class="feature-card" data-aos="fade-left" data-aos-delay="350">
-                            <h4>La terapia se ajusta a tu forma de ser</h4>
-                            <p>Respeto tu ritmo pero te ayudo a avanzar</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-row">
-                        <div class="feature-card" data-aos="fade-right" data-aos-delay="400">
-                            <h4>Aprendes a escuchar tanto tu corazón como tu mente</h4>
-                            <p>Cuando ambos trabajan juntos, puedes entender por qué haces lo que haces y cambiar lo que necesitas cambiar</p>
-                        </div>
-                        <div class="feature-card" data-aos="fade-left" data-aos-delay="450">
-                            <h4>Desarrollas herramientas que realmente te sirven</h4>
-                            <p>No solo en terapia, sino en tu vida real</p>
-                        </div>
-                    </div>
-                    
-                    <div class="feature-row">
-                        <div class="feature-card" data-aos="fade-right" data-aos-delay="500">
-                            <h4>Apoyo genuino en sesión</h4>
-                            <p>Contención profesional cuando atraviesas momentos difíciles</p>
-                        </div>
-                        <div class="feature-card" data-aos="fade-left" data-aos-delay="550">
                             <h4>Entiendo profundamente quién eres y cómo funciona tu mundo</h4>
                             <p>Para trabajar desde tus fortalezas y respetar tus limitaciones, no imponerte un molde que no te queda</p>
                         </div>
                     </div>
                     
                     <div class="feature-row">
-                        <div class="feature-card" data-aos="fade-right" data-aos-delay="600">
-                            <h4>Te acompaño a ver lo que necesitas ver</h4>
-                            <p>Con respeto y cuidado, pero sin evitar lo importante</p>
+                        <div class="feature-card" data-aos="fade-right" data-aos-delay="400">
+                            <h4>Apoyo genuino en sesión</h4>
+                            <p>Contención profesional cuando atraviesas momentos difíciles</p>
                         </div>
-                        <div class="feature-card" data-aos="fade-left" data-aos-delay="620">
-                            <h4>Especialista en cómo tratar la ansiedad</h4>
-                            <p>Te ayudo a regular y afrontar esos pensamientos y emociones que te abruman. Aprende a estar tranquila(o) ¡se puede!</p>
+                        <div class="feature-card" data-aos="fade-left" data-aos-delay="450">
+                            <h4>La terapia se ajusta a tu forma de ser</h4>
+                            <p>Respeto tu ritmo pero te ayudo a avanzar</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-row">
+                        <div class="feature-card" data-aos="fade-right" data-aos-delay="500">
+                            <h4>Aprendes a escuchar tanto tu corazón como tu mente</h4>
+                            <p>Cuando ambos trabajan juntos, puedes entender por qué haces lo que haces y cambiar lo que necesitas cambiar</p>
+                        </div>
+                        <div class="feature-card" data-aos="fade-left" data-aos-delay="550">
+                            <h4>Desarrollas herramientas que realmente te sirven</h4>
+                            <p>No solo en terapia, sino en tu vida real</p>
                         </div>
                     </div>
                 </div>
@@ -1990,19 +2152,6 @@
                         Disponible: Lunes a Sábados<br>
                         10:00 AM - 8:00 PM
                     </p>
-                    
-                    <div style="margin-top: 20px;">
-                        <h5 style="color: var(--coral-light); margin-bottom: 10px;">Ubicación</h5>
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3758.8471628826845!2d-99.2444444!3d19.6366667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e36a09d6c6b8f7%3A0x9b3aa2c9c3b4f5e2!2sHacienda%20de%20Zotoluca%20357%2C%20Hacienda%20de%20Echegaray%2C%2053300%20Naucalpan%20de%20Ju%C3%A1rez%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1698765432100!5m2!1ses!2smx"
-                            width="100%" 
-                            height="200" 
-                            style="border:0; border-radius: 10px;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
                 </div>
                 
                 <div class="footer-section">
@@ -2034,6 +2183,17 @@
                     <span>Ayuda psicológica</span>
                     <span>Terapia infantil</span>
                     <span>Psicólogo Atizapán</span>
+                </div>
+            </div>
+
+            <div class="footer-map-section">
+                <div class="footer-map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3758.8471628826845!2d-99.2444444!3d19.6366667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e36a09d6c6b8f7%3A0x9b3aa2c9c3b4f5e2!2sHacienda%20de%20Zotoluca%20357%2C%20Hacienda%20de%20Echegaray%2C%2053300%20Naucalpan%20de%20Ju%C3%A1rez%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1698765432100!5m2!1ses!2smx"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
             
