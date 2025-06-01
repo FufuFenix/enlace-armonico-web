@@ -259,7 +259,7 @@
             color: var(--coral-primary);
         }
         
-        /* Botones - MEJORADOS PARA CONSISTENCIA */
+        /* Botones mejorados */
         .btn-primary, .btn-secondary {
             padding: 16px 32px;
             border: none;
@@ -319,11 +319,11 @@
             background: linear-gradient(135deg, var(--coral-dark), var(--coral-primary));
         }
         
-        /* Hero Section */
+        /* Hero Section OPTIMIZADO */
         .hero {
             background: var(--soft-white);
             color: var(--charcoal);
-            padding: 150px 0 100px;
+            padding: 150px 0 60px;
             position: relative;
             overflow: hidden;
         }
@@ -338,17 +338,19 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
             opacity: 0.1;
         }
-        
-        .hero-content {
+
+        /* FRANJA 1: H1 + Párrafo + Logo */
+        .hero-franja-1 {
             display: grid;
             grid-template-columns: 1fr 300px;
             gap: 60px;
             align-items: center;
+            margin-bottom: 50px;
             position: relative;
             z-index: 2;
         }
-        
-        .hero-text h1 {
+
+        .hero-text-main h1 {
             font-family: var(--font-heading);
             font-size: 3.2rem;
             font-weight: 600;
@@ -356,35 +358,13 @@
             margin-bottom: 1.5rem;
             color: var(--blue-dark);
         }
-        
-        .hero-text p {
+
+        .hero-text-main p {
             font-size: 1.25rem;
             line-height: 1.6;
-            margin-bottom: 2.5rem;
             color: var(--charcoal);
         }
-        
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 2.5rem;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(212, 121, 107, 0.1);
-            padding: 15px;
-            border-radius: 12px;
-            color: var(--charcoal);
-        }
-        
-        .feature-icon {
-            font-size: 1.5rem;
-        }
-        
+
         .hero-logo {
             display: flex;
             justify-content: center;
@@ -392,21 +372,13 @@
         }
         
         .hero-logo img {
-            width: 400px;
+            width: 300px;
             height: auto;
             filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
             animation: float 4s ease-in-out infinite;
             loading: eager;
         }
-        
-        /* Lazy loading para imágenes no críticas */
-        .approach-character img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            loading: lazy;
-        }
-        
+
         .hero-logo-mobile {
             display: none;
             justify-content: center;
@@ -422,53 +394,149 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
-        
+
+        /* FRANJA 2: Botones + Features organizadas */
+        .hero-franja-2 {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         .hero-buttons {
             display: flex;
             gap: 20px;
+            justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
         }
-        
-        .btn-primary {
-            background: var(--coral-dark);
+
+        /* Urgency badge mejorado - mismo tamaño que botón principal */
+        .urgency-badge {
+            background: var(--gradient-hero);
             color: white;
             padding: 16px 32px;
-            border: none;
             border-radius: 30px;
-            font-weight: 600;
             font-size: 1.1rem;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow-medium);
+            animation: pulse-subtle 3s infinite;
         }
-        
-        .btn-primary:hover {
+
+        .urgency-badge:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-strong);
-            background: var(--coral-primary);
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue-primary));
         }
         
-        .btn-secondary {
-            background: var(--blue-primary);
-            color: white;
-            padding: 16px 32px;
-            border: 2px solid var(--blue-primary);
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-decoration: none;
-            display: inline-flex;
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        /* Features organizadas lado a lado */
+        .hero-features-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
             align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            gap: 12px;
+            background: rgba(212, 121, 107, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            color: var(--charcoal);
         }
         
-        .btn-secondary:hover {
-            background: var(--blue-dark);
-            border-color: var(--blue-dark);
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        .value-points {
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 20px; 
+            background: rgba(74, 123, 149, 0.05); 
+            padding: 20px; 
+            border-radius: 12px;
+        }
+
+        .value-point {
+            text-align: left;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .value-point strong {
+            color: var(--blue-dark); 
+            display: block; 
+            margin-bottom: 8px;
+        }
+
+        .value-point span {
+            font-size: 0.9rem; 
+            color: var(--charcoal);
+        }
+
+        /* FRANJA 3: Diferenciador mejorado */
+        .hero-franja-3 {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+        }
+
+        .honest-differentiators {
+            background: linear-gradient(135deg, var(--warm-beige) 0%, var(--blue-soft) 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid var(--coral-primary);
+            box-shadow: var(--shadow-soft);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .honest-differentiators::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 3rem;
+            color: var(--coral-primary);
+            font-family: var(--font-heading);
+            opacity: 0.3;
+        }
+
+        .honest-differentiators p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--blue-dark);
+            text-align: center;
+            margin: 0;
+            position: relative;
+            z-index: 1;
         }
         
         /* Section Styling */
@@ -624,6 +692,7 @@
             width: 100px;
             height: 100px;
             object-fit: contain;
+            loading: lazy;
         }
         
         .approach-center {
@@ -672,11 +741,6 @@
             box-shadow: var(--shadow-medium);
         }
         
-        .feature-card::before {
-            display: none;
-        }
-        
-        /* Mejores contrastes visuales */
         .feature-card h4 {
             color: var(--blue-dark);
             font-weight: 700;
@@ -684,7 +748,6 @@
             font-size: 1.1rem;
         }
 
-        /* Alternar colores por fila con mejor contraste */
         .feature-row:nth-child(even) .feature-card h4 {
             color: var(--coral-dark);
         }
@@ -695,101 +758,90 @@
             font-weight: 400;
         }
         
-        .specialty-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--blue-dark);
-            margin-bottom: 20px;
+        /* Casos de éxito */
+        .success-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .case-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            border-left: 5px solid var(--blue-primary);
+        }
+
+        .case-before-after {
+            display: grid;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .before, .after {
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .before {
+            background: rgba(212, 121, 107, 0.1);
+        }
+
+        .after {
+            background: rgba(74, 123, 149, 0.1);
+        }
+
+        .case-note {
+            text-align: right;
+            font-style: italic;
+            color: var(--warm-gray);
+            margin-top: 15px;
+        }
+
+        /* Proceso */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-coral);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .process-note {
+            background: var(--blue-soft);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+            color: var(--blue-dark);
         }
         
-        /* sucess-cases */
-
-.success-cases {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.case-card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-soft);
-    border-left: 5px solid var(--blue-primary);
-}
-
-.case-before-after {
-    display: grid;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.before, .after {
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.before {
-    background: rgba(212, 121, 107, 0.1);
-}
-
-.after {
-    background: rgba(74, 123, 149, 0.1);
-}
-
-.case-note {
-    text-align: right;
-    font-style: italic;
-    color: var(--warm-gray);
-    margin-top: 15px;
-}
-
-        /* Proceso-section*/
-        .process-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.step {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: var(--shadow-soft);
-    position: relative;
-}
-
-.step-number {
-    width: 50px;
-    height: 50px;
-    background: var(--gradient-coral);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 auto 20px;
-}
-
-.process-note {
-    background: var(--blue-soft);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-top: 40px;
-    color: var(--blue-dark);
-}
-
         /* Experiencia */
         .experience-content {
             display: grid;
@@ -916,7 +968,6 @@
             margin: 0 auto;
         }
         
-        /* Testimonials Carousel */
         .testimonials-carousel {
             position: relative;
             max-width: 650px;
@@ -1019,113 +1070,6 @@
         .dot.active {
             background: var(--coral-primary);
             transform: scale(1.2);
-        }
-        
-        /* Micro-interactions mejoradas */
-        .testimonial-card {
-            background: linear-gradient(135deg, white 0%, var(--warm-beige) 100%);
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: var(--shadow-soft);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            max-width: 380px;
-            flex: 1;
-            border-left: 5px solid var(--coral-primary);
-            cursor: pointer;
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-strong);
-        }
-        
-        .specialty-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: var(--shadow-soft);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(212, 121, 107, 0.1);
-        }
-        
-        .specialty-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-        
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-soft);
-            text-align: left;
-            transition: all 0.3s ease;
-            flex: 1;
-            position: relative;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-medium);
-        }
-        
-        .testimonial-card:nth-child(2) {
-            border-left-color: var(--blue-primary);
-            transform: translateY(-10px);
-        }
-        
-        .testimonial-card:nth-child(3) {
-            border-left-color: var(--sage-green);
-        }
-        
-        .testimonial-card:nth-child(4) {
-            border-left-color: var(--coral-primary);
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-        }
-        
-        .testimonial-card:nth-child(2):hover {
-            transform: translateY(-18px);
-        }
-        
-        .testimonial-card::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            width: 40px;
-            height: 30px;
-            background: var(--coral-light);
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-        
-        .testimonial-card:nth-child(2)::before {
-            background: var(--blue-primary);
-        }
-        
-        .testimonial-card:nth-child(3)::before {
-            background: var(--sage-green);
-        }
-        
-        .testimonial-card:nth-child(4)::before {
-            background: var(--coral-dark);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: var(--charcoal);
-        }
-        
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--blue-dark);
         }
         
         /* Contacto */
@@ -1270,23 +1214,6 @@
             color: rgba(255, 255, 255, 0.6);
         }
         
-
-        .urgency-badge {
-            background: var(--blue-light);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 15px;
-            animation: pulse-subtle 2s infinite;
-        }
-        
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
         .collapsible {
             cursor: pointer;
             background: var(--blue-soft);
@@ -1336,7 +1263,7 @@
             transform: rotate(180deg);
         }
         
-        /* Scroll to Top Button - CORREGIDO */
+        /* Scroll to Top Button */
         .scroll-to-top {
             position: fixed;
             bottom: 100px;
@@ -1407,17 +1334,28 @@
                 display: flex;
             }
         
-            .hero-content {
+            .hero-franja-1 {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 30px;
             }
             
-            .hero-text h1 {
+            .hero-text-main h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero-features-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .hero-features {
                 grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
             
             .contact-content,
@@ -1428,10 +1366,6 @@
             
             .nav-links {
                 display: none;
-            }
-            
-            .hero-buttons {
-                justify-content: center;
             }
             
             .section-title {
@@ -1476,15 +1410,16 @@
             }
             
             .hero {
-                padding: 120px 0 80px;
+                padding: 120px 0 60px;
             }
             
-            .hero-text h1 {
+            .hero-text-main h1 {
                 font-size: 2rem;
             }
             
             .btn-primary,
-            .btn-secondary {
+            .btn-secondary,
+            .urgency-badge {
                 padding: 14px 24px;
                 font-size: 1rem;
             }
@@ -1494,90 +1429,6 @@
                 padding: 20px;
             }
         }
-
-        /* NUEVO LAYOUT - 3 FRANJAS */
-.hero-franja-1 {
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 60px;
-    align-items: center;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-text-main h1 {
-    font-family: var(--font-heading);
-    font-size: 3.2rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    color: var(--blue-dark);
-}
-
-.hero-text-main p {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: var(--charcoal);
-}
-
-.hero-franja-2 {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 2;
-}
-
-.hero-cta-section {
-    text-align: center;
-}
-
-.hero-franja-3 {
-    position: relative;
-    z-index: 2;
-}
-
-.value-points {
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
-    background: rgba(74, 123, 149, 0.05); 
-    padding: 20px; 
-    border-radius: 12px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.value-point {
-    text-align: center;
-}
-
-.value-point strong {
-    color: var(--blue-dark); 
-    display: block; 
-    margin-bottom: 8px;
-}
-
-.value-point span {
-    font-size: 0.9rem; 
-    color: var(--charcoal);
-}
-
-/* RESPONSIVE UPDATES */
-@media (max-width: 768px) {
-    .hero-franja-1 {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-    }
-    
-    .value-points {
-        grid-template-columns: 1fr;
-    }
-}
-
     </style>
 </head>
 <body>
@@ -1604,83 +1455,84 @@
         </nav>
     </header>
 
-   <!-- Hero Section -->
-<section class="hero">
-    <div class="container">
-        <!-- FRANJA 1: H1 + Párrafo + Logo -->
-        <div class="hero-franja-1">
-            <div class="hero-text-main">
-                <h1>A veces, lo único que necesitas es un espacio seguro para entenderte y encontrar claridad</h1>
-                
-                <div class="hero-logo-mobile">
-                    <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica" loading="eager" width="200" height="150">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <!-- FRANJA 1: H1 + Párrafo + Logo -->
+            <div class="hero-franja-1">
+                <div class="hero-text-main">
+                    <h1>A veces, lo único que necesitas es un espacio seguro para entenderte y encontrar claridad</h1>
+                    
+                    <div class="hero-logo-mobile">
+                        <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica" loading="eager" width="200" height="150">
+                    </div>
+                    
+                    <p>Como psicólogo te acompaño a encontrar el camino para lidiar con tu situación. Transformamos la confusión en claridad, el sufrimiento en crecimiento. No tienes que vivir en ansiedad. No estás sola(o)</p>
                 </div>
-                
-                <p>Como psicólogo te acompaño a encontrar el camino para lidiar con tu situación. Transformamos la confusión en claridad, el sufrimiento en crecimiento. No tienes que vivir en ansiedad. No estás sola(o)</p>
+                <div class="hero-logo">
+                    <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica especializada en ansiedad y depresión" loading="eager" width="300" height="225">
+                </div>
             </div>
-            <div class="hero-logo">
-                <img src="logo.png" alt="Enlace Armónico - Terapia Psicológica especializada en ansiedad y depresión" loading="eager" width="300" height="225">
+
+            <!-- FRANJA 2: Botones + Features organizadas -->
+            <div class="hero-franja-2">
+                <div class="hero-cta-section">
+                    <div class="hero-buttons">
+                        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0xfRT6oZq8kvn22C3BQSG3LF_NNMryI3X-bxBYTKDZfnLTRZMzkiS2OLmLF41ZUEVVz_wgRwFt" class="urgency-badge" target="_blank">
+                            <i class="fas fa-clock"></i> Agenda esta semana - Cupos limitados
+                        </a>
+                        
+                        <a href="https://wa.me/525547855154?text=Hola!%20Vi%20su%20p%C3%A1gina%20web%20y%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios.%20%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%3F%20Gracias" class="btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> ¿Dudas? Platiquemos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-features-container">
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✨</span>
+                            <span>15 años de experiencia</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎓</span>
+                            <span>Maestría internacional</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💙</span>
+                            <span>Integrando corazón y mente</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📊</span>
+                            <span>500+ vidas transformadas</span>
+                        </div>
+                    </div>
+
+                    <div class="value-points">
+                        <div class="value-point">
+                            <strong>✓ Diagnóstico claro</strong>
+                            <span>Sabrás qué está pasando y por qué</span>
+                        </div>
+                        <div class="value-point">
+                            <strong>✓ Contención real</strong>
+                            <span>Un espacio seguro donde puedes ser vulnerable</span>
+                        </div>
+                        <div class="value-point">
+                            <strong>✓ Cambios reales</strong>
+                            <span>Mejoras evidentes en 5-8 sesiones</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRANJA 3: Diferenciador mejorado -->
+            <div class="hero-franja-3">
+                <div class="honest-differentiators">
+                    <p>"No soy el psicólogo que te regaña, te da consejos genéricos o solo te dice lo que quieres escuchar. Trabajamos las causas, no solo los síntomas."</p>
+                </div>
             </div>
         </div>
-
-        <!-- FRANJA 2: CTA + Botón + Features + Value Points -->
-        <div class="hero-franja-2">
-            <div class="hero-cta-section">
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0xfRT6oZq8kvn22C3BQSG3LF_NNMryI3X-bxBYTKDZfnLTRZMzkiS2OLmLF41ZUEVVz_wgRwFt" class="urgency-badge" target="_blank">
-                    <i class="fas fa-clock"></i> Agenda esta semana - Cupos limitados
-                </a>
-                
-                <div class="hero-buttons">
-                    <a href="https://wa.me/5255478551540?text=Hola!%20Vi%20su%20p%C3%A1gina%20web%20y%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios.%20%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%3F%20Gracias" class="btn-primary" target="_blank">
-                        <i class="fab fa-whatsapp"></i> ¿Dudas? Platiquemos
-                    </a>
-                </div>
-            </div>
-
-            <div class="hero-features">
-                <div class="feature-item">
-                    <span class="feature-icon">✨</span>
-                    <span>15 años de experiencia</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">🎓</span>
-                    <span>Maestría internacional</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">💙</span>
-                    <span>Integrando corazón y mente</span>
-                </div>
-                <div class="feature-item">
-                    <span class="feature-icon">📊</span>
-                    <span>500+ vidas transformadas</span>
-                </div>
-            </div>
-
-            <div class="value-points">
-                <div class="value-point">
-                    <strong>✓ Diagnóstico claro</strong>
-                    <span>Sabrás qué está pasando y por qué</span>
-                </div>
-                <div class="value-point">
-                    <strong>✓ Contención real</strong>
-                    <span>Un espacio seguro donde puedes ser vulnerable</span>
-                </div>
-                <div class="value-point">
-                    <strong>✓ Cambios reales</strong>
-                    <span>Mejoras evidentes en 5-8 sesiones</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- FRANJA 3: Diferenciador -->
-        <div class="hero-franja-3">
-            <div class="honest-differentiators">
-                <p>"No soy el psicólogo que te regaña, te da consejos genéricos o solo te dice lo que quieres escuchar. Trabajamos las causas, no solo los síntomas."</p>
-            </div>
-        </div>
-    </div>
-</section> 
-
+    </section>
 
     <!-- Especialidades Section -->
     <section id="especialidades" class="section">
@@ -1822,80 +1674,80 @@
     </section>
 
     <!-- Casos de Éxito Section -->
-<section class="section">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">Casos de Éxito</h2>
-        
-        <div class="success-cases">
-            <div class="case-card" data-aos="fade-up">
-                <h3>Ansiedad Generalizada</h3>
-                <div class="case-before-after">
-                    <div class="before">
-                        <h4>Antes:</h4>
-                        <p>"No podía dormir, me preocupaba por todo, tenía ataques de pánico 3 veces por semana"</p>
-                    </div>
-                    <div class="after">
-                        <h4>Después de 8 sesiones:</h4>
-                        <p>"Duermo 7 horas completas, manejo mis preocupaciones y no he tenido ataques de pánico en 2 meses"</p>
-                    </div>
-                </div>
-                <p class="case-note"><em>- Mujer, 29 años, ejecutiva</em></p>
-            </div>
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Casos de Éxito</h2>
             
-            <div class="case-card" data-aos="fade-up" data-aos-delay="200">
-                <h3>Problemas de Pareja</h3>
-                <div class="case-before-after">
-                    <div class="before">
-                        <h4>Antes:</h4>
-                        <p>"Peleábamos diario, ya no nos hablábamos, estábamos a punto del divorcio"</p>
+            <div class="success-cases">
+                <div class="case-card" data-aos="fade-up">
+                    <h3>Ansiedad Generalizada</h3>
+                    <div class="case-before-after">
+                        <div class="before">
+                            <h4>Antes:</h4>
+                            <p>"No podía dormir, me preocupaba por todo, tenía ataques de pánico 3 veces por semana"</p>
+                        </div>
+                        <div class="after">
+                            <h4>Después de 8 sesiones:</h4>
+                            <p>"Duermo 7 horas completas, manejo mis preocupaciones y no he tenido ataques de pánico en 2 meses"</p>
+                        </div>
                     </div>
-                    <div class="after">
-                        <h4>Después de 12 sesiones:</h4>
-                        <p>"Aprendimos a comunicarnos, resolvemos conflictos sin gritos, volvimos a conectar como pareja"</p>
-                    </div>
+                    <p class="case-note"><em>- Mujer, 29 años, ejecutiva</em></p>
                 </div>
-                <p class="case-note"><em>- Pareja, 32 y 35 años</em></p>
+                
+                <div class="case-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Problemas de Pareja</h3>
+                    <div class="case-before-after">
+                        <div class="before">
+                            <h4>Antes:</h4>
+                            <p>"Peleábamos diario, ya no nos hablábamos, estábamos a punto del divorcio"</p>
+                        </div>
+                        <div class="after">
+                            <h4>Después de 12 sesiones:</h4>
+                            <p>"Aprendimos a comunicarnos, resolvemos conflictos sin gritos, volvimos a conectar como pareja"</p>
+                        </div>
+                    </div>
+                    <p class="case-note"><em>- Pareja, 32 y 35 años</em></p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Proceso Section -->
-<section class="section" style="background: var(--warm-beige);">
-    <div class="container">
-        <h2 class="section-title" data-aos="fade-up">¿Cómo trabajamos juntos?</h2>
-        
-        <div class="process-steps">
-            <div class="step" data-aos="fade-up" data-aos-delay="100">
-                <div class="step-number">1</div>
-                <h3>Primera sesión - Nos conocemos</h3>
-                <p>Platicamos sobre lo que te está pasando, sin presión. Es un espacio seguro para que me cuentes tu situación.</p>
+    <!-- Proceso Section -->
+    <section class="section" style="background: var(--warm-beige);">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">¿Cómo trabajamos juntos?</h2>
+            
+            <div class="process-steps">
+                <div class="step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3>Primera sesión - Nos conocemos</h3>
+                    <p>Platicamos sobre lo que te está pasando, sin presión. Es un espacio seguro para que me cuentes tu situación.</p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3>Entendemos el problema</h3>
+                    <p>Juntos identificamos qué está manteniendo el problema y qué podemos hacer para cambiarlo.</p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3>Desarrollamos herramientas</h3>
+                    <p>Te enseño técnicas específicas que puedes usar en tu día a día, adaptadas a tu forma de ser.</p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h3>Practicamos y ajustamos</h3>
+                    <p>Vemos qué funciona, qué no, y ajustamos el enfoque hasta que veas resultados reales.</p>
+                </div>
             </div>
             
-            <div class="step" data-aos="fade-up" data-aos-delay="200">
-                <div class="step-number">2</div>
-                <h3>Entendemos el problema</h3>
-                <p>Juntos identificamos qué está manteniendo el problema y qué podemos hacer para cambiarlo.</p>
-            </div>
-            
-            <div class="step" data-aos="fade-up" data-aos-delay="300">
-                <div class="step-number">3</div>
-                <h3>Desarrollamos herramientas</h3>
-                <p>Te enseño técnicas específicas que puedes usar en tu día a día, adaptadas a tu forma de ser.</p>
-            </div>
-            
-            <div class="step" data-aos="fade-up" data-aos-delay="400">
-                <div class="step-number">4</div>
-                <h3>Practicamos y ajustamos</h3>
-                <p>Vemos qué funciona, qué no, y ajustamos el enfoque hasta que veas resultados reales.</p>
+            <div class="process-note" data-aos="fade-up" data-aos-delay="500">
+                <p><strong>La mayoría de mis pacientes ven mejoras significativas entre las sesiones 4-8.</strong></p>
             </div>
         </div>
-        
-        <div class="process-note" data-aos="fade-up" data-aos-delay="500">
-            <p><strong>La mayoría de mis pacientes ven mejoras significativas entre las sesiones 4-8.</strong></p>
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Experiencia Section -->
     <section id="experiencia" class="section">
@@ -2313,8 +2165,7 @@
         // Initialize
         updateCarousel();
 
-        // FAQ functionality
-        // Scroll to top functionality - CORREGIDO
+        // Scroll to top functionality
         const scrollToTopBtn = document.getElementById('scrollToTop');
 
         window.addEventListener('scroll', function() {
