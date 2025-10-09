@@ -33,11 +33,11 @@
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://enlacearmonico.com/">
   <meta property="twitter:title" content="Enlace Armónico - Terapia Psicológica Naucalpan">
-  <meta property="twitter:description" content="Especialista en ansiedad y depresión. 15 años de experiencia, 500+ pacientes atendidos.">
+  <meta property="twitter:description" content="Especialista en ansiedad y depresión. 15 años de experiencia, 500+ vidas transformadas.">
   <meta property="twitter:image" content="https://enlacearmonico.com/og-image.jpg">
 
-  <!-- Preload Critical Resources -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style">
+  <!-- Preload Critical Resources (fonts con menos pesos) -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" as="style">
   <link rel="preload" href="logo.png" as="image">
   
   <!-- Preconnect -->
@@ -84,8 +84,8 @@
   }
   </script>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts (menos pesos) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- AOS CSS -->
@@ -100,17 +100,24 @@
       --gradient-hero:linear-gradient(135deg,var(--blue-primary),var(--blue-light));
       --gradient-coral:linear-gradient(135deg,var(--coral-primary),var(--coral-light));
       --font-heading:'Playfair Display',serif; --font-body:'Inter',sans-serif;
-      --shadow-soft:0 4px 20px rgba(46,74,92,.1);
-      --shadow-medium:0 8px 30px rgba(46,74,92,.15);
-      --shadow-strong:0 12px 40px rgba(46,74,92,.2);
+      /* Sombras optimizadas */
+      --shadow-soft:0 2px 10px rgba(46,74,92,.08);
+      --shadow-medium:0 6px 18px rgba(46,74,92,.10);
+      --shadow-strong:0 10px 24px rgba(46,74,92,.12);
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
     body{font-family:var(--font-body);line-height:1.6;color:var(--charcoal);background-color:var(--soft-white);overflow-x:hidden;width:100%;max-width:100vw}
     .container{max-width:1200px;margin:0 auto;padding:0 20px;width:100%}
 
-    /* Header */
-    header{background:rgba(248,250,251,.95);backdrop-filter:blur(10px);position:fixed;top:0;width:100%;z-index:1000;transition:all .3s ease;box-shadow:var(--shadow-soft)}
+    /* Header (sin backdrop-filter) */
+    header{
+      background:rgba(248,250,251,0.96);
+      position:fixed;top:0;width:100%;z-index:1000;
+      transition:background .3s ease;
+      box-shadow:0 2px 12px rgba(46,74,92,.10);
+      border-bottom:1px solid rgba(46,74,92,.06);
+    }
     nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;width:100%}
     .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
     .logo-text{font-family:var(--font-heading);display:flex;flex-direction:column}
@@ -273,9 +280,13 @@
     .scroll-to-top.visible{opacity:1;visibility:visible}
     .scroll-to-top:hover{background:var(--blue-dark);transform:translateY(-3px);box-shadow:var(--shadow-strong)}
 
-    /* WhatsApp Floating Button (igual) */
+    /* WhatsApp Floating Button */
     .whatsapp-float{position:fixed;bottom:30px;right:30px;background:#25D366;color:#fff;width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:var(--shadow-strong);z-index:1000;animation:pulse 2s infinite;text-decoration:none}
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+
+    /* Pausar animaciones mientras scrolleo */
+    body.scrolling .whatsapp-float,
+    body.scrolling .urgency-badge { animation: none !important; }
 
     /* Especialidades */
     .specialties-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;width:100%}
@@ -547,7 +558,7 @@
   <section id="contacto" class="section">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Contacto</h2>
-      <div class="contact-content">
+    <div class="contact-content">
         <div class="contact-info" data-aos="fade-right">
           <p class="contact-intro">Sé que dar el primer paso puede sentirse difícil. Por eso, comencemos de la forma más sencilla:</p>
           <div class="contact-methods">
@@ -568,8 +579,8 @@
             <a href="tel:+525547855154" class="contact-method" style="background:#F5F1EC;">
               <div class="icon"><i class="fas fa-phone"></i></div>
               <div class="contact-method-text">
-                <h4>o Llámame al 55 4785 5154</h4>
-                <p>Atiendo de Lunes a Sábado</p>
+                <h4>¿Prefieres llamar? 55 4785 5154</h4>
+                <p>Si no contesto, probablemente estoy en sesión. Por <strong>WhatsApp</strong> te respondo en breve.</p>
               </div>
             </a>
           </div>
@@ -580,9 +591,8 @@
           </div>
         </div>
 
-        <!-- Mapa con overlay clicable -->
+        <!-- Mapa embebido (carga normal con lazy) -->
         <div class="map-container" data-aos="fade-left">
-          <!-- Overlay que abre Google Maps (app/web) -->
           <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=19.6366667,-99.2444444" target="_blank" rel="noopener">Abrir en Google Maps</a>
           <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3758.8471628826845!2d-99.2444444!3d19.6366667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85e36a09d6c6b8f7%3A0x9b3aa2c9c3b4f5e2!2sHacienda%20de%20Zotoluca%20357%2C%20Hacienda%20de%20Echegaray%2C%2053300%20Naucalpan%20de%20Ju%C3%A1rez%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1698765432100!5m2!1ses!2smx"
@@ -657,7 +667,7 @@
         this.classList.toggle('active');
         const content=this.nextElementSibling;
         content.style.display=(content.style.display==='block')?'none':'block';
-      });
+      }, {passive:true});
     });
 
     // Smooth scrolling
@@ -665,15 +675,16 @@
       anchor.addEventListener('click',function(e){
         const target=document.querySelector(this.getAttribute('href'));
         if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
-      });
+      }, {passive:false});
     });
 
-    // Header scroll effect
+    // Header scroll effect (solo background)
     window.addEventListener('scroll',function(){
       const header=document.querySelector('header');
-      if(window.scrollY>100){ header.style.background='rgba(248, 250, 251, 0.98)'; header.style.boxShadow='0 8px 30px rgba(46, 74, 92, 0.15)'; }
-      else { header.style.background='rgba(248, 250, 251, 0.95)'; header.style.boxShadow='0 4px 20px rgba(46, 74, 92, 0.1)'; }
-    });
+      header.style.background = (window.scrollY>100)
+        ? 'rgba(248,250,251,0.98)'
+        : 'rgba(248,250,251,0.96)';
+    }, {passive:true});
 
     // Testimonials Carousel
     let currentSlide=0;
@@ -690,11 +701,11 @@
       prevBtn.disabled=currentSlide===0;
       nextBtn.disabled=currentSlide===totalSlides-1;
     }
-    function nextSlide(){ if(currentSlide<totalSlides-1){ currentSlide++; updateCarousel(); } }
-    function prevSlide(){ if(currentSlide>0){ currentSlide--; updateCarousel(); } }
+    function nextSlide(){ if(currentSlide<totalSlides-1){ currentSlide++; updateCarousel(); } else { currentSlide=0; updateCarousel(); } }
+    function prevSlide(){ if(currentSlide>0){ currentSlide--; updateCarousel(); } else { currentSlide=totalSlides-1; updateCarousel(); } }
     function goToSlide(i){ currentSlide=i; updateCarousel(); }
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide, {passive:true});
+    prevBtn.addEventListener('click', prevSlide, {passive:true});
     dots.forEach((dot,i)=>dot.addEventListener('click',()=>goToSlide(i)));
     setInterval(()=>{ currentSlide=(currentSlide===totalSlides-1)?0:currentSlide+1; updateCarousel(); }, 5500);
     updateCarousel();
@@ -704,7 +715,7 @@
     window.addEventListener('scroll',function(){
       if(window.scrollY>300) scrollToTopBtn.classList.add('visible');
       else scrollToTopBtn.classList.remove('visible');
-    });
+    }, {passive:true});
     scrollToTopBtn.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
 
     // ======= GA4 + Ads (conversiones por clic) + UTM keeper =======
@@ -720,13 +731,13 @@
       a.addEventListener('click',()=>{
         gtag('event','cta_whatsapp_click',{location:a.closest('section')?.id||'header'});
         fireAdsConversion();
-      });
+      }, {passive:true});
     });
     document.querySelectorAll(CAL_SELECTOR).forEach(a=>{
       a.addEventListener('click',()=>{
         gtag('event','cta_agendar_click',{location:a.closest('section')?.id||'header'});
         fireAdsConversion();
-      });
+      }, {passive:true});
     });
 
     // Scroll depth (GA4)
@@ -735,7 +746,7 @@
       if(!scrollFired && (window.scrollY+window.innerHeight)/document.body.scrollHeight>0.75){
         gtag('event','scroll_depth',{percent:75}); scrollFired=true;
       }
-    });
+    }, {passive:true});
 
     // Acordeón toggle (GA4)
     document.querySelectorAll('.collapsible').forEach(btn=>{
@@ -757,11 +768,34 @@
       });
     })();
 
-    // AOS (animaciones de scroll) – cargado diferido
+    // Pausar animaciones mientras scrolleo (debounce)
+    (function(){
+      let t;
+      window.addEventListener('scroll',()=>{
+        document.body.classList.add('scrolling');
+        clearTimeout(t);
+        t=setTimeout(()=>document.body.classList.remove('scrolling'),150);
+      }, {passive:true});
+    })();
+
+    // AOS (animaciones de scroll) – modo ligero (init en idle y off en móvil)
+    function initAOS(){
+      if(!window.AOS) return;
+      AOS.init({
+        duration:600,
+        once:true,
+        offset:100,
+        easing:'ease-out',
+        disable: () => window.innerWidth < 768
+      });
+    }
     window.addEventListener('load',()=>{
       const s=document.createElement('script');
       s.src='https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js'; s.defer=true;
-      s.onload=()=>AOS.init({duration:800,once:true,offset:100});
+      s.onload=()=>{
+        if('requestIdleCallback' in window){ requestIdleCallback(initAOS); }
+        else { setTimeout(initAOS, 800); }
+      };
       document.body.appendChild(s);
     });
   </script>
